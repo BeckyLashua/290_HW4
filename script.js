@@ -89,7 +89,8 @@ let markCellButton = document.createElement("button");
 markCellButton.textContent = "Marked Cell";
 buttonDiv.appendChild(markCellButton);
 markCellButton.addEventListener("click", () => {
-  console.log("mark cell button clicked");
+  let selected = document.getElementById("selected");
+  selected.style.backgroundColor = "yellow";
 });
 
 
