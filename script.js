@@ -25,26 +25,6 @@ for (let i = 0; i < 4; i++) {
 
 //document.getElementByTagName("body").appendChild(newTable);
 
-// cell moving function for directional buttons
-function moveCellUp() {
-  console.log("Moving cell up");
-}
-
-function moveCellDown() {
-  console.log("Moving cell down");
-}
-
-function moveCellLeft() {
-  console.log("Moving cell left");
-}
-
-function moveCellRight() {
-  console.log("Moving cell right");
-}
-// highlighting function for marked cell button
-function highlightCell() {
-  console.log("highlighting cell");
-}
 
 // Create a div for the buttons
 let buttonDiv = document.createElement("div");
@@ -65,16 +45,26 @@ rightButton.textContent = "Right";
 buttonDiv.appendChild(rightButton);
 
 // Add event listener for each button
-upButton.addEventListener("click", moveCellUp);
-downButton.addEventListener("click", moveCellDown);
-leftButton.addEventListener("click", moveCellLeft);
-rightButton.addEventListener("click", moveCellRight);
+upButton.addEventListener("click", () => {
+  console.log("up button clicked");
+});
+downButton.addEventListener("click", () => {
+  console.log("down button clicked");
+});
+leftButton.addEventListener("click", () => {
+  console.log("left button clicked");
+});
+rightButton.addEventListener("click", () => {
+  console.log("right button clicked");
+});
 
 // Create button labeled "Marked Cell"
 let markCellButton = document.createElement("button");
 markCellButton.textContent = "Marked Cell";
 buttonDiv.appendChild(markCellButton);
-markCellButton.addEventListener("click", highlightCell);
+markCellButton.addEventListener("click", () => {
+  console.log("mark cell button clicked");
+});
 
 
 // When the page is loaded, the upper-left non-header cell of the table should be 'selected'.
