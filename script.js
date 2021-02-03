@@ -1,24 +1,3 @@
-/*let newTable = document.createElement("table");
-
-// Create rows and add them to table
-for (let i = 0; i < 4; i++) {
-  let newRow = document.createElement("tr");
-  newTable.appendChild(newRow);
-}
-
-// Create header rows and add them to table
-for (let i = 0; i < 4; i++) {
-  let header = document.createElement("th");
-  header.textContent = "Header " + i;
-  newTable.children[0].appendChild(header);
-}
-*/
-
-// Create cells and add them to rows, 
-// The non header cells should contain their position. 
-//The upper left cell should contain the text "1, 1", the cell to its right "1, 2", 
-//the cell below it "2, 1" and so on
-
 // Create border and highlight top left corner (maybe use function for highlighting a cell)
 // highlightCell()
 
@@ -40,7 +19,6 @@ function addTable() {
     newTable.children[0].appendChild(header);
     header.style.border = "1px solid black";
   }
-
   // create cells 
   for (let i = 1; i < 4; i++) {
     for (let j = 1; j <= 4; j++) {
@@ -54,6 +32,7 @@ function addTable() {
   
   // append to body 
   document.body.appendChild(newTable);
+  newTable.setAttribute("id", "newTable");
 }
 addTable();
 //document.body.appendChild(newTable);
@@ -101,8 +80,8 @@ markCellButton.addEventListener("click", () => {
 
 // When the page is loaded, the upper-left non-header cell of the table should be 'selected'.
 // This is denoted by it having a thicker border than the other cells
-let highlightedCell = document.getElementById("newTable").children[0];
-highlightedCell.style.border = "thick solid black";
+let highlightedCell = document.getElementById("newTable").children[1].children[0];
+highlightedCell.style.border = "5px solid black";
 // If you push the directional buttons, other cells should be selected instead. 
 //So if you press the right button, cell 1,1 should no longer be selected 
 // and 1, 2 should be selected instead. (siblings??)
