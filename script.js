@@ -22,9 +22,41 @@ for (let i = 0; i < 4; i++) {
 // Create border and highlight top left corner (maybe use function for highlighting a cell)
 // highlightCell()
 
+function addTable() {
+  // craete table element
+  let newTable = document.createElement("table");
+  newTable.style.border = "1px solid black";
 
-//document.getElementByTagName("body").appendChild(newTable);
+  // create 4 rows 
+  for (let i = 0; i < 4; i++) {
+    let row = document.createElement("tr");
+    newTable.appendChild(row);
+  }
+  // create headers and append them 
+  for (let i = 1; i <= 4; i++) {
+    let header = document.createElement("th");
+    let headerText = document.createTextNode("Header " + i);
+    header.appendChild(headerText);
+    newTable.children[0].appendChild(header);
+    header.style.border = "1px solid black";
+  }
 
+  // create cells 
+  for (let i = 1; i < 4; i++) {
+    for (let j = 1; j <= 4; j++) {
+      let cell = document.createElement("td");
+      let cellText = document.createTextNode(i + "," + j);
+      cell.appendChild(cellText);
+      newTable.children[i].appendChild(cell);
+      cell.style.border = "1px solid black";
+    }
+  }
+  
+  // append to body 
+  document.body.appendChild(newTable);
+}
+addTable();
+//document.body.appendChild(newTable);
 
 // Create a div for the buttons
 let buttonDiv = document.createElement("div");
