@@ -1,40 +1,52 @@
 // Function for creating a table and appending it to body
 function addTable() {
-  // craete table element
+  // create table element
   let newTable = document.createElement("table");
-  let newTableBody = document.createElement("tbody");
   newTable.style.border = "1px solid black";
 
-  // create 4 rows 
-  for (let i = 0; i < 4; i++) {
-    let row = document.createElement("tr");
-    newTableBody.appendChild(row);
-  }
-  // create headers and append them 
+  // create a tbody and thead elements
+  let newTableBody = document.createElement("tbody");
+  let newTableHead = document.createElement("thead");
+
+  // create and append header row
+  let headerRow = document.createElement("tr");
+  newTableHead.append(headerRow);
+
+  // create header cells and append them 
   for (let i = 1; i <= 4; i++) {
     let header = document.createElement("th");
     header.textContent = "Header " + i;
-    newTableBody.children[0].appendChild(header);
+    headerRow.appendChild(header);
     header.style.border = "1px solid black";
   }
+  
+  // create 3 additional rows 
+  for (let i = 1; i < 4; i++) {
+    let row = document.createElement("tr");
+    newTableBody.appendChild(row);
+  }
+
   // create cells 
   for (let i = 1; i < 4; i++) {
     for (let j = 1; j <= 4; j++) {
       let cell = document.createElement("td");
       cell.textContent = i + "," + j;
-      newTableBody.children[i].appendChild(cell);
+      newTableBody.children[i-1].appendChild(cell);
       cell.style.border = "1px solid black";
+      cell.setAttribute("rowNum", i);
     }
   }
   
-  // append to body 
+  // append child elements to table and append table to body 
+  newTable.appendChild(newTableHead);
   newTable.appendChild(newTableBody);
   document.body.appendChild(newTable);
   newTable.setAttribute("id", "newTable");
+  newTableHead.setAttribute("id", "newTableHead");
   newTableBody.setAttribute("id", "newTableBody");
+  
 }
 addTable();
-//document.body.appendChild(newTable);
 
 // Create a div for the buttons
 let buttonDiv = document.createElement("div");
@@ -56,7 +68,7 @@ buttonDiv.appendChild(rightButton);
 
 // change border function for directional buttons
 function changeColor(selected, newSelected) {
-  if (newSelected != null) {
+  if (newSelected != null && newSelected.nodeName != "th") {
     newSelected.style.border = "5px solid black";
     selected.style.border = "1px solid black";
     newSelected.setAttribute("id", "selected");
@@ -67,13 +79,17 @@ function changeColor(selected, newSelected) {
 // Add event listener for each button
 upButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
-  let newSelected = selected.parentNode;
-  changeColor(selected, newSelected); 
+  let rowNum = selected.getAttribute("rowNum");
+  console.log("upRowNum: " + rowNum);
+  let newSelected = selected.parentNode.childNodes[rowNum];
+  changeColor(selected, newSelected);
 });
 
 downButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
-  let newSelected = selected.parentNode;
+  let rowNum = selected.getAttribute("rowNum");
+  console.log("downRowNum: " + rowNum);
+  let newSelected = selected.parentNode.childNodes[rowNum];
   changeColor(selected, newSelected);
 });
 
@@ -101,7 +117,7 @@ markCellButton.addEventListener("click", () => {
 
 // When the page is loaded, the upper-left non-header cell of the table should be 'selected'.
 // This is denoted by it having a thicker border than the other cells
-let highlightedCell = document.getElementById("newTableBody").children[1].children[0];
+let highlightedCell = document.getElementById("newTableBody").children[0].children[0];
 highlightedCell.style.border = "5px solid black";
 highlightedCell.setAttribute("id", "selected");
 
