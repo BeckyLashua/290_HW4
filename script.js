@@ -33,7 +33,7 @@ function addTable() {
       cell.textContent = i + "," + j;
       newTableBody.children[i-1].appendChild(cell);
       cell.style.border = "1px solid black";
-      cell.setAttribute("rowNum", i);
+      cell.setAttribute("colNum", i-1);
     }
   }
   
@@ -79,17 +79,17 @@ function changeColor(selected, newSelected) {
 // Add event listener for each button
 upButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
-  let rowNum = selected.getAttribute("rowNum");
-  console.log("upRowNum: " + rowNum);
-  let newSelected = selected.parentNode.childNodes[rowNum];
+  let colNum = selected.getAttribute("colNum");
+  console.log(colNum);
+  let newSelected = selected.parentNode.previousSibling.childNodes[0];
   changeColor(selected, newSelected);
 });
 
 downButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
-  let rowNum = selected.getAttribute("rowNum");
-  console.log("downRowNum: " + rowNum);
-  let newSelected = selected.parentNode.childNodes[rowNum];
+  let colNum = selected.getAttribute("colNum");
+  console.log(colNum);
+  let newSelected = selected.parentNode.nextSibling.childNodes[0];
   changeColor(selected, newSelected);
 });
 
