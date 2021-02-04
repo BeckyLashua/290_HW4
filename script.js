@@ -33,7 +33,7 @@ function addTable() {
       cell.textContent = i + "," + j;
       newTableBody.children[i-1].appendChild(cell);
       cell.style.border = "1px solid black";
-      cell.setAttribute("colNum", i-1);
+      cell.setAttribute("data-colNum", j-1);
     }
   }
   
@@ -79,17 +79,16 @@ function changeColor(selected, newSelected) {
 // Add event listener for each button
 upButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
-  let colNum = selected.getAttribute("colNum");
-  console.log(colNum);
-  let newSelected = selected.parentNode.previousSibling.childNodes[0];
+  let colNum = selected.getAttribute("data-colNum");
+  let newSelected = selected.parentNode.previousSibling.childNodes[colNum];
+  changeColor(selected, newSelected);
   changeColor(selected, newSelected);
 });
 
 downButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
-  let colNum = selected.getAttribute("colNum");
-  console.log(colNum);
-  let newSelected = selected.parentNode.nextSibling.childNodes[0];
+  let colNum = selected.getAttribute("data-colNum");
+  let newSelected = selected.parentNode.nextSibling.childNodes[colNum];
   changeColor(selected, newSelected);
 });
 
