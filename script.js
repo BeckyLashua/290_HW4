@@ -78,18 +78,18 @@ function changeColor(selected, newSelected) {
 
 // Add event listener for each button
 upButton.addEventListener("click", () => {
-  let selected = document.getElementById("selected");
-  let colNum = selected.getAttribute("data-colNum");
-  if (selected.parentNode.previousSibling != null) {
+  let selected = document.getElementById("selected");// current selected cell
+  let colNum = selected.getAttribute("data-colNum"); // current column number
+  if (selected.parentNode.previousSibling != null) { // make sure within bounds
     let newSelected = selected.parentNode.previousSibling.childNodes[colNum];
     changeColor(selected, newSelected);
   }
 });
 
 downButton.addEventListener("click", () => {
-  let selected = document.getElementById("selected");
-  let colNum = selected.getAttribute("data-colNum");
-  if (selected.parentNode.nextSibling != null) {
+  let selected = document.getElementById("selected"); // current selected cell
+  let colNum = selected.getAttribute("data-colNum");  // current column number
+  if (selected.parentNode.nextSibling != null) { // make sure within bounds
     let newSelected = selected.parentNode.nextSibling.childNodes[colNum];
     changeColor(selected, newSelected);
   }
