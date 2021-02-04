@@ -80,16 +80,19 @@ function changeColor(selected, newSelected) {
 upButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
   let colNum = selected.getAttribute("data-colNum");
-  let newSelected = selected.parentNode.previousSibling.childNodes[colNum];
-  changeColor(selected, newSelected);
-  changeColor(selected, newSelected);
+  if (selected.parentNode.previousSibling != null) {
+    let newSelected = selected.parentNode.previousSibling.childNodes[colNum];
+    changeColor(selected, newSelected);
+  }
 });
 
 downButton.addEventListener("click", () => {
   let selected = document.getElementById("selected");
   let colNum = selected.getAttribute("data-colNum");
-  let newSelected = selected.parentNode.nextSibling.childNodes[colNum];
-  changeColor(selected, newSelected);
+  if (selected.parentNode.nextSibling != null) {
+    let newSelected = selected.parentNode.nextSibling.childNodes[colNum];
+    changeColor(selected, newSelected);
+  }
 });
 
 leftButton.addEventListener("click", () => {
@@ -120,3 +123,5 @@ let highlightedCell = document.getElementById("newTableBody").children[0].childr
 highlightedCell.style.border = "5px solid black";
 highlightedCell.setAttribute("id", "selected");
 
+
+//document.querySelector('td[data-colNum="1,0"]')
